@@ -125,7 +125,7 @@ class acp_controller
 
 			// Let's remove the user's current subscriptions
 			$sql = 'DELETE FROM ' . $this->tables['forums_watch'] . '
-				WHERE user_id = ' . $user_id . '';
+				WHERE user_id = ' . (int) $user_id . '';
 
 			$this->db->sql_query($sql);
 

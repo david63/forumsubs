@@ -77,7 +77,7 @@ class main_controller
 				$this->tables['forums_watch']	=> 'fw',
 			],
 			'WHERE'		=> 'u.user_id = fw.user_id
-				AND fw.forum_id = ' . $forum_id,
+				AND fw.forum_id = ' . (int) $forum_id,
 			'ORDER_BY'	=> 'u.username_clean',
 		]);
 

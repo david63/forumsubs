@@ -38,7 +38,7 @@ if (empty($lang) || !is_array($lang))
  *
  */
 
-$lang = array_merge($lang,
+$lang = array_merge($lang, [
 	'ACP_USER_FORUMSUBS'		=> 'Subscriptions',
 
 	'LOG_ACP_USER_FORUM_SUBS'	=> '<strong>Updated forum subscriptions<br></strong>» %1$s',

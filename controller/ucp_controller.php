@@ -83,7 +83,7 @@ class ucp_controller
 				$this->tables['forums_watch']	=> 'fw',
 			],
 			'WHERE'		=> 'u.user_id = fw.user_id
-				AND u.user_id 	= ' . $user_id . '
+				AND u.user_id 	= ' . (int) $user_id . '
 				AND f.forum_id	= fw.forum_id',
 			'ORDER_BY'	=> 'f.forum_name',
 		]);

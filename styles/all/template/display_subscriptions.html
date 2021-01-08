@@ -1,0 +1,35 @@
+{% if S_DISPLAY_DATA and S_CAN_VIEW_SUBS %}
+	<div class="dropdown-container dropdown-container-left">
+		<span title="{{ lang('DISPLAY_SUBSCRIPTIONS') }}" class="button button-secondary dropdown-trigger">
+			<i class="icon fa-bookmark fa-fw" aria-hidden="true"></i>
+			<span class="caret"><i class="icon fa-sort-down fa-fw" aria-hidden="true"></i></span>
+		</span>
+
+		<div class="dropdown hidden">
+			<div class="pointer"></div>
+			<div class="dropdown-contents">
+				<div class="forumbg forumbg-table">
+					<div class="inner">
+						<table class="table1">
+							<thead>
+								<tr>
+									<th class="name">{{ lang('USERNAME') }}</th>
+									<th class="posts">{{ lang('POSTS') }}</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								{% for subs in member_subs %}
+									<tr class="{% if subs.S_ROW_COUNT is odd %}bg1{% else %}bg2{% endif %}">
+										<td class="name">{{ subs.USERNAME }}</td>
+										<td class="posts">{{ subs.FORUM_POSTS }}</td>
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endif %}

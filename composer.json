@@ -1,0 +1,34 @@
+{
+	"name": "david63/forumsubs",
+	"type": "phpbb-extension",
+	"description": "Manage member's forum subscriptions.",
+	"version": "3.1.0-RC1",
+	"time": "2021-01-05",
+	"keywords":
+	[
+		"phpbb",
+		"extension",
+		"forum",
+		"subscribed"
+	],
+	"license": "GPL-2.0-only",
+	"authors": [{
+		"name": "David Wood",
+		"role": "Developer"
+	}],
+	"require": {
+        "php": ">=7.1.3"
+    },
+	"extra": {
+		"display-name": "[d63] Forum subscriptions",
+		"soft-require": {
+			"phpbb/phpbb": ">=3.3.0,<4.0.0@dev"
+      },
+	  "version-check": {
+        	"host": "version.phpbbdev.space",
+        	"directory": "/versions",
+        	"filename": "forum_subscriptions_version_file.json",
+			"ssl": false
+    	}
+	}
+}

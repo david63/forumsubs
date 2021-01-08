@@ -1,0 +1,20 @@
+{% if S_CAN_VIEW_SUBS %}
+	<div class="panel bg2">
+		<div class="inner">
+			<h3>{{ lang('FORUM_SUBSCRIPTIONS') }}</h3>
+			{% if not S_DISPLAY_DATA %}
+				<dt>{{ lang('NO_DATA') }}</dt>
+			{% else %}
+				<dl class="details">
+					<dt>{{ lang('FORUM_NAME') }}&nbsp;&nbsp;&nbsp;&nbsp;</dt>
+					<dd>{{ lang('FORUM_POSTS') }}</dd>
+					<br><br>
+					{% for subs in loops.member_subs %}
+						<dt>{{ subs.FORUM_NAME }}&nbsp;&nbsp;&nbsp;&nbsp;</dt>
+						<dd>&nbsp;&nbsp;&nbsp;&nbsp;{{ subs.FORUM_POSTS }}</dd>
+					{% endfor %}
+				</dl>
+			{% endif %}
+		</div>
+	</div>
+{% endif %}

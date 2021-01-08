@@ -1,0 +1,29 @@
+imports:
+    - { resource: alias.yml }
+
+services:
+    _defaults:
+        autowire: true
+        bind:
+            $root_path: '%core.root_path%'
+            $php_ext: '%core.php_ext%'		
+            $tables: '%tables%'
+            $ext_images_path: '%core.root_path%ext/david63/forumsubs/adm/style/images'
+        public: true			
+
+    david63.forumsubs.listener:
+        class: david63\forumsubs\event\listener
+        tags:
+            - { name: event.listener }
+
+    david63.forumsubs.main.controller:
+        class: david63\forumsubs\controller\main_controller
+
+    david63.forumsubs.acp.controller:
+       class: david63\forumsubs\controller\acp_controller
+
+    david63.forumsubs.ucp.controller:
+        class: david63\forumsubs\controller\ucp_controller
+
+    david63.forumsubs.core.functions:
+        class: david63\forumsubs\core\functions

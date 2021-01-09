@@ -85,13 +85,17 @@ class ucp_controller
 			'WHERE'		=> 'u.user_id = fw.user_id
 				AND u.user_id 	= ' . (int) $user_id . '
 				AND f.forum_id	= fw.forum_id',
-			'ORDER_BY'	=> 'f.forum_name',
+			'ORDER_BY'	=> 'f.parent_id, f.left_id',
 		]);
 
 		$result = $this->db->sql_query($sql);
 
+		$num_rows	= $col_1 = $result->num_rows;
+		$col_2 		= 0;
+		$col_2_set	= false;
+
 		// Send the data to the template
-		if ($result->num_rows == 0)
+		if ($num_rows == 0)
 		{
 			$display = false;
 		}
@@ -99,21 +103,46 @@ class ucp_controller
 		{
 			$display = true;
 
-			while ($row = $this->db->sql_fetchrow($result))
+			// Let's split the output into two columns if number of fora is greater than 10
+			if ($num_rows >= 10)
 			{
-				$this->template->assign_block_vars('member_subs', [
+				$col_1 = ceil($num_rows / 2);
+				$col_2 = $num_rows - $col_1;
+			}
+
+			for ($i = 0; $i < $col_1; $i++)
+			{
+				$row = $this->db->sql_fetchrow($result);
+
+				$this->template->assign_block_vars('member_subs_1', [
 					'FORUM_NAME'	=> $row['forum_name'],
 					'FORUM_POSTS'	=> $this->functions->get_user_post_count($row['forum_id'], $user_id),
 				]);
+			}
+
+			if ($col_2 > 0)
+			{
+				$col_2_set = true;
+
+				for ($i = $col_2 + 1; $i < $num_rows; $i++)
+				{
+					$row = $this->db->sql_fetchrow($result);
+
+					$this->template->assign_block_vars('member_subs_2', [
+						'FORUM_NAME'	=> $row['forum_name'],
+						'FORUM_POSTS'	=> $this->functions->get_user_post_count($row['forum_id'], $user_id),
+					]);
+				}
 			}
 		}
 
 		$this->db->sql_freeresult($result);
 
 		$this->template->assign_vars([
-			'NAMESPACE' 		=> $this->functions->get_ext_namespace('twig'),
+			'FS_NAMESPACE' 		=> $this->functions->get_ext_namespace('twig'),
 
 			'S_CAN_VIEW_SUBS'   => ($this->auth->acl_get('u_forumsubs_view')) ? true : false,
+			'S_COL_2_SET'		=> $col_2_set,
 			'S_DISPLAY_DATA'	=> $display,
 		]);
 	}

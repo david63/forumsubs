@@ -1,0 +1,27 @@
+/**
+* forumsubs.css
+**/
+
+/* ---------
+Additional table formatting
+--------- */
+dt.fs-header {
+	font-weight: bold;
+	font-size: 12px;
+	text-align: left !important;
+}
+
+dd.fs-header {
+	font-weight: bold;
+	font-size: 12px;
+	color: #000000;
+	margin-bottom: 10px !important;
+}
+
+dt.fs-body {
+	text-align: left !important;
+}
+
+dd.fs-body {
+	text-align: left !important;
+}

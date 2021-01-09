@@ -10,28 +10,33 @@ Manage member's forum subscriptions.
 [![codecov](https://codecov.io/gh/david63/forumsubs/branch/master/graph/badge.svg?token=D2500PgRex)](https://codecov.io/gh/david63/forumsubs)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/59902be2665c476dbd7951858c9ff769)](https://www.codacy.com/manual/david63/forumsubs?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=david63/forumsubs&amp;utm_campaign=Badge_Grade)
 
- [![Compatible](https://img.shields.io/badge/compatible-phpBB:3.3.x-blue.svg)](https://shields.io/)
+[![Compatible](https://img.shields.io/badge/compatible-phpBB:3.3.x-blue.svg)](https://shields.io/)
+
+![Screenshot](viewforum_1.jpg)
+![Screenshot](viewforum_2.jpg)
+![Screenshot](profile.jpg)
+![Screenshot](acp_1.jpg)
+![Screenshot](acp_2.jpg)
 
 ## Minimum Requirements
 * phpBB 3.3.0
 * PHP 7.1.3
 
 ## Install
-1. [Download the latest release](https://github.com/david63/forumsubs/archive/3.2.zip) and unzip it.
+1. [Download the latest release](https://github.com/david63/forumsubs/archive/3.3.zip) and unzip it.
 2. Unzip the downloaded release and copy it to the `ext` directory of your phpBB board.
 3. Navigate in the ACP to `Customise -> Manage extensions`.
-4. Look for `Announcements on index` under the Disabled Extensions list and click its `Enable` link.
+4. Look for `Forum subscriptions` under the Disabled Extensions list and click its `Enable` link.
 
 ## Usage
-1. Navigate in the ACP to `Extensions -> Announcements on index -> Manage announcements`.
-2. Apply the settings that you require.
+1. Set the `Can view forum subscriptions` permission for the groups/users that are to see the forum subscriptions.
 
 ## Uninstall
 1. Navigate in the ACP to `Customise -> Manage extensions`.
-2. Click the `Disable` link for `Announcements on index`.
+2. Click the `Disable` link for `Forum subscriptions`.
 3. To permanently uninstall, click `Delete Data`, then delete the forumsubs folder from `phpBB/ext/david63/`.
 
 ## License
 [GNU General Public License v2](http://opensource.org/licenses/GPL-2.0)
 
-© 2020 - David Wood
+© 2021 - David Wood

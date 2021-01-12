@@ -1,4 +1,4 @@
-# Forum Subscriotions extension for phpBB
+# Forum Subscriptions extension for phpBB
 
 Manage member's forum subscriptions.
 
@@ -13,9 +13,13 @@ Manage member's forum subscriptions.
 [![Compatible](https://img.shields.io/badge/compatible-phpBB:3.3.x-blue.svg)](https://shields.io/)
 
 ![Screenshot](viewforum_1.jpg)
+
 ![Screenshot](viewforum_2.jpg)
+
 ![Screenshot](profile.jpg)
+
 ![Screenshot](acp_1.jpg)
+
 ![Screenshot](acp_2.jpg)
 
 ## Minimum Requirements

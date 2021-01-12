@@ -41,5 +41,7 @@ if (empty($lang) || !is_array($lang))
 $lang = array_merge($lang, [
 	'DISPLAY_SUBSCRIPTIONS' => 'Display forum subscriptions',
 
+	'SUBSCRIBERS'			=> 'Subscribers : %s',
+
 	'USERNAME'				=> 'Username',
 ]);

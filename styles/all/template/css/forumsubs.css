@@ -25,3 +25,11 @@ dt.fs-body {
 dd.fs-body {
 	text-align: left !important;
 }
+
+th.subscribers {
+	text-align: center;
+	border-bottom: solid;
+	border-bottom-color: #FFFFFF;
+	border-bottom-width: thin;
+
+}

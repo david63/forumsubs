@@ -83,8 +83,10 @@ class main_controller
 
 		$result = $this->db->sql_query($sql);
 
+		$num_rows = $result->num_rows;
+
 		// Send the data to the template
-		if ($result->num_rows == 0)
+		if ($num_rows == 0)
 		{
 			$display_data = false;
 		}
@@ -104,6 +106,10 @@ class main_controller
 		$this->db->sql_freeresult($result);
 
 		$this->template->assign_vars(array(
+			'FS_NAMESPACE' 		=> $this->functions->get_ext_namespace('twig'),
+
+			'SUBSCRIBERS'		=> $this->language->lang('SUBSCRIBERS', $num_rows),
+			
 			'S_DISPLAY_DATA'	=> $display_data,
 			'S_CAN_VIEW_SUBS'   => ($this->auth->acl_get('u_forumsubs_view')) ? true : false,
 		));

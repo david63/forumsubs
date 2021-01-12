@@ -163,7 +163,8 @@ class acp_controller
 			$this->template->assign_block_vars('forum_data', [
 				'FORUM_ID'			=> $forum_id,
 				'FORUM_NAME'		=> $forum_data['forum_name'],
-				'FORUM_TYPE'		=> $forum_data['forum_type'],
+				// Need to handle forums without a category
+				'FORUM_TYPE'		=> ($forum_data['forum_type'] == 1 & $forum_data['parent_id'] == 0) ? 9 : $forum_data['forum_type'],
 				'FORUM_PADDING'		=> $forum_data['padding'],
 				'FORUM_SUBSCRIBED'	=> $this->functions->is_user_subscribed($forum_id, $user_id),
 			]);

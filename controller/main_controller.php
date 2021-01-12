@@ -109,7 +109,7 @@ class main_controller
 			'FS_NAMESPACE' 		=> $this->functions->get_ext_namespace('twig'),
 
 			'SUBSCRIBERS'		=> $this->language->lang('SUBSCRIBERS', $num_rows),
-			
+
 			'S_DISPLAY_DATA'	=> $display_data,
 			'S_CAN_VIEW_SUBS'   => ($this->auth->acl_get('u_forumsubs_view')) ? true : false,
 		));

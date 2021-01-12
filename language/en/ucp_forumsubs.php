@@ -39,7 +39,7 @@ if (empty($lang) || !is_array($lang))
  */
 
 $lang = array_merge($lang, [
-	'FORUM_NAME'			=> 'Forum name',
+	'FORUM_NAME'			=> 'Forum (Subscribed)',
 	'FORUM_POSTS'			=> 'Forum posts',
 	'FORUM_SUBSCRIPTIONS'	=> 'Forum subscriptions',
 

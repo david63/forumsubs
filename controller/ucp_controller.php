@@ -117,6 +117,7 @@ class ucp_controller
 				$this->template->assign_block_vars('member_subs_1', [
 					'FORUM_NAME'	=> $row['forum_name'],
 					'FORUM_POSTS'	=> $this->functions->get_user_post_count($row['forum_id'], $user_id),
+					'SUBSCRIBERS'	=> $this->functions->get_subscribed_user_count($row['forum_id']),
 				]);
 			}
 
@@ -131,6 +132,7 @@ class ucp_controller
 					$this->template->assign_block_vars('member_subs_2', [
 						'FORUM_NAME'	=> $row['forum_name'],
 						'FORUM_POSTS'	=> $this->functions->get_user_post_count($row['forum_id'], $user_id),
+						'SUBSCRIBERS'	=> $this->functions->get_subscribed_user_count($row['forum_id']),
 					]);
 				}
 			}

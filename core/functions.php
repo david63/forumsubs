@@ -208,12 +208,31 @@ class functions
 				WHERE forum_id	= $forum_id
 				AND user_id 	= $user_id";
 
-		$result = $this->db->sql_query($sql);
-
+		$result		= $this->db->sql_query($sql);
 		$subscribed = ($result->num_rows != 0) ? true : false;
 
 		$this->db->sql_freeresult($result);
 
 		return $subscribed;
+	}
+
+	/**
+	* Get the number of users subscribed to a forum
+	*
+	* @return $user_count
+	* @access public
+	*/
+	public function get_subscribed_user_count($forum_id)
+	{
+		$sql = 'SELECT COUNT(user_id) AS user_count
+			FROM ' . $this->tables['forums_watch'] . "
+				WHERE forum_id	= $forum_id";
+
+		$result		= $this->db->sql_query($sql);
+		$user_count	= (int) $this->db->sql_fetchfield('user_count');
+
+		$this->db->sql_freeresult($result);
+
+		return $user_count;
 	}
 }

@@ -49,6 +49,7 @@
 				<tr>
 					<th>{{ lang('FORUM_NAME') }}</th>
 					<th class="forum-head">{{ lang('CHECK') }}</th>
+					<th class="forum-head">{{ lang('SUBSCRIBER_COUNT') }}</th>
 				</tr>
 			</thead>
 
@@ -58,7 +59,9 @@
 						<td>{{ fora.FORUM_PADDING }}{{ fora.FORUM_NAME }}</td>
 						{% if fora.FORUM_TYPE == 1 or fora.FORUM_TYPE == 9 %}
 							<td class="mark"><input type="checkbox" name="forum_list[]" value="{{ fora.FORUM_ID }}"{% if fora.FORUM_SUBSCRIBED %} checked="checked"{% endif %} /></td>
+							<td class="mark">{{ fora.SUBSCRIBED_COUNT }}</td>
 						{% else %}
+							<td></td>
 							<td></td>
 						{% endif %}
 					</tr>

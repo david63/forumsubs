@@ -167,6 +167,7 @@ class acp_controller
 				'FORUM_TYPE'		=> ($forum_data['forum_type'] == 1 & $forum_data['parent_id'] == 0) ? 9 : $forum_data['forum_type'],
 				'FORUM_PADDING'		=> $forum_data['padding'],
 				'FORUM_SUBSCRIBED'	=> $this->functions->is_user_subscribed($forum_id, $user_id),
+				'SUBSCRIBED_COUNT'	=> $this->functions->get_subscribed_user_count($forum_id),
 			]);
 		}
 

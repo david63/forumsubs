@@ -28,8 +28,9 @@ dd.fs-body {
 
 th.subscribers {
 	text-align: center;
-	border-bottom: solid;
-	border-bottom-color: #FFFFFF;
-	border-bottom-width: thin;
+	border-bottom: thin solid #FFFFFF;
+}
 
+th.name {
+	border-right: thin solid #FFFFFF;
 }

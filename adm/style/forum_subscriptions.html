@@ -1,0 +1,30 @@
+{% include '@' ~ NAMESPACE ~ '/head_panel.html' %}
+
+{% if PHP_VALID and PHPBB_VALID %}
+	{% INCLUDECSS '@' ~ NAMESPACE ~ '/css/acp.css' %}
+		<div class="table">
+			<div class="table-header">
+				<div class="table-header-cell-left">{{ lang('FORUM_NAME') }}</div>
+				<div class="table-header-cell-narrow forum-head">{{ lang('SUBSCRIBER_COUNT') }}</div>
+				<div class="table-header-cell-right forum-head">{{ lang('SUBSCRIBERS') }}</div>
+			</div>
+
+			<div class="table-body">
+				{% for fora in loops.forum_data %}
+					<div class="{% if fora.S_ROW_COUNT is even %}table-row1{% else %}table-row2{% endif %}{% if fora.FORUM_TYPE == 0 or fora.FORUM_TYPE == 9 %} forum-cat{% else %} forum-forum{% endif %}">
+					<div class="table-body-cell">{{ fora.FORUM_PADDING }}{{ fora.FORUM_NAME }}</div>
+						{% if fora.FORUM_TYPE == 1 or fora.FORUM_TYPE == 9 %}
+							<div class="table-body-cell-narrow">{{ fora.SUBSCRIBED_COUNT }}</div>
+							<div class="table-body-cell">{{ fora.SUBSCRIBERS }}</div>
+						{% else %}
+							<div class="table-body-cell"></div>
+							<div class="table-body-cell"></div>
+						{% endif %}
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+
+	{% INCLUDEJS '@' ~ NAMESPACE ~ '/js/forumcat.js' %}
+	{% include '@' ~ NAMESPACE ~ '/donate.html' %}
+{% endif %}

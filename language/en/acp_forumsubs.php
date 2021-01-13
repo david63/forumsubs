@@ -46,7 +46,10 @@ $lang = array_merge($lang, [
 	'FORUM_SUBSCRIPTIONS'			=> 'Forum subscriptions',
 	'FORUM_SUBSCRIPTIONS_EXPLAIN'	=> 'Here you will find the forums that the user is subscribed to.<br><em>(Click a forum category to expand/collapse its forums.)</em>',
 
-	'NO_DATA'						=> ' The user is not subscribed to any forums.',
+	'NO_DATA'						=> '&nbsp;The user is not subscribed to any forums.',
+	'NO_SUBSCRIBERS'				=> 'No users are subscribed to this forum',
 
 	'SUBSCRIBER_COUNT'				=> 'Subscriber count',
+	'SUBSCRIBERS'					=> 'Forum subscribers',
+	'SUBSCRIPTIONS_EXPLAIN'			=> 'Here you will find the members that are subscribed to each forum.<br><em>(Click a forum category to expand/collapse its forums.)</em>',
 ]);

@@ -22,8 +22,14 @@ services:
     david63.forumsubs.acp.controller:
        class: david63\forumsubs\controller\acp_controller
 
+    david63.forumsubs.admin.controller:
+        class: david63\forumsubs\controller\admin_controller
+
     david63.forumsubs.ucp.controller:
         class: david63\forumsubs\controller\ucp_controller
 
     david63.forumsubs.core.functions:
         class: david63\forumsubs\core\functions
+
+    david63.forumsubs.core.ext_functions:
+        class: david63\forumsubs\core\ext_functions

@@ -16,6 +16,7 @@ use phpbb\template\template;
 use phpbb\language\language;
 use phpbb\auth\auth;
 use david63\forumsubs\core\functions;
+use david63\forumsubs\core\ext_functions;
 use phpbb\db\driver\driver_interface;
 
 /**
@@ -35,6 +36,9 @@ class ucp_controller
 	/** @var functions */
 	protected $functions;
 
+	/** @var functions */
+	protected $ext_functions;
+
 	/** @var driver_interface */
 	protected $db;
 
@@ -49,19 +53,21 @@ class ucp_controller
 	 * @param language				$language 		Language object
 	 * @param auth 					$auth			Auth object
 	 * @param functions   			$functions		Functions for the extension
+	 * @param ext_functions   		$ext_functions	Functions for the extension
 	 * @param array					$tables			phpBB db tables
 	 *
 	 * @return \david63\forumsubs\controller\ucp_controller
 	 * @access public
 	 */
-	public function __construct(template $template, language $language, auth $auth, functions $functions, driver_interface $db, array $tables)
+	public function __construct(template $template, language $language, auth $auth, functions $functions, ext_functions $ext_functions, driver_interface $db, array $tables)
 	{
-		$this->template		= $template;
-		$this->language		= $language;
-		$this->auth			= $auth;
-		$this->functions	= $functions;
-		$this->db			= $db;
-		$this->tables		= $tables;
+		$this->template			= $template;
+		$this->language			= $language;
+		$this->auth				= $auth;
+		$this->functions		= $functions;
+		$this->ext_functions	= $ext_functions;
+		$this->db				= $db;
+		$this->tables			= $tables;
 	}
 
 	/**
@@ -116,8 +122,7 @@ class ucp_controller
 
 				$this->template->assign_block_vars('member_subs_1', [
 					'FORUM_NAME'	=> $row['forum_name'],
-					'FORUM_POSTS'	=> $this->functions->get_user_post_count($row['forum_id'], $user_id),
-					'SUBSCRIBERS'	=> $this->functions->get_subscribed_user_count($row['forum_id']),
+					'FORUM_POSTS'	=> $this->ext_functions->get_user_post_count($row['forum_id'], $user_id),
 				]);
 			}
 
@@ -131,8 +136,7 @@ class ucp_controller
 
 					$this->template->assign_block_vars('member_subs_2', [
 						'FORUM_NAME'	=> $row['forum_name'],
-						'FORUM_POSTS'	=> $this->functions->get_user_post_count($row['forum_id'], $user_id),
-						'SUBSCRIBERS'	=> $this->functions->get_subscribed_user_count($row['forum_id']),
+						'FORUM_POSTS'	=> $this->ext_functions->get_user_post_count($row['forum_id'], $user_id),
 					]);
 				}
 			}

@@ -14,6 +14,7 @@ use phpbb\db\driver\driver_interface;
 use phpbb\auth\auth;
 use phpbb\language\language;
 use david63\forumsubs\core\functions;
+use david63\forumsubs\core\ext_functions;
 
 class main_controller
 {
@@ -32,6 +33,9 @@ class main_controller
 	/** @var functions */
 	protected $functions;
 
+	/** @var functions */
+	protected $ext_functions;
+
 	/** @var string custom tables */
 	protected $tables;
 
@@ -43,19 +47,21 @@ class main_controller
 	 * @param auth 					$auth			Auth object
 	 * @param language				$language		Language object
 	 * @param functions				$functions		Functions for the extension
+	 * @param ext_functions			$ext_functions	Functions for the extension
 	 * @param array					$tables			phpBB db tables
 	 *
 	 * @return \david63\forumsubs\controller\main_controller
 	 * @access public
 	 */
-	public function __construct(template $template, driver_interface $db, auth $auth, language $language, functions $functions, array $tables)
+	public function __construct(template $template, driver_interface $db, auth $auth, language $language, functions $functions, ext_functions $ext_functions, array $tables)
 	{
-		$this->template		= $template;
-		$this->db			= $db;
-		$this->auth			= $auth;
-		$this->language		= $language;
-		$this->functions	= $functions;
-		$this->tables		= $tables;
+		$this->template			= $template;
+		$this->db				= $db;
+		$this->auth				= $auth;
+		$this->language			= $language;
+		$this->functions		= $functions;
+		$this->ext_functions	= $ext_functions;
+		$this->tables			= $tables;
 	}
 
 	/**
@@ -98,7 +104,7 @@ class main_controller
 			{
 				$this->template->assign_block_vars('member_subs', [
 					'USERNAME' 		=> get_username_string('full', $row['user_id'], $row['username'], $row['user_colour']),
-					'FORUM_POSTS'	=> $this->functions->get_user_post_count($row['forum_id'], $row['user_id']),
+					'FORUM_POSTS'	=> $this->ext_functions->get_user_post_count($row['forum_id'], $row['user_id']),
 				]);
 			}
 		}

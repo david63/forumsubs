@@ -14,11 +14,11 @@ namespace david63\forumsubs\controller;
  */
 use phpbb\user;
 use phpbb\request\request;
-use phpbb\auth\auth;
 use phpbb\log\log;
 use phpbb\template\template;
 use phpbb\language\language;
 use david63\forumsubs\core\functions;
+use david63\forumsubs\core\ext_functions;
 use phpbb\db\driver\driver_interface;
 
 /**
@@ -32,9 +32,6 @@ class acp_controller
 	/** @var request */
 	protected $request;
 
-	/** @var auth */
-	protected $auth;
-
 	/** @var log */
 	protected $log;
 
@@ -46,6 +43,9 @@ class acp_controller
 
 	/** @var functions */
 	protected $functions;
+
+	/** @var functions */
+	protected $ext_functions;
 
 	/** @var driver_interface */
 	protected $db;
@@ -67,11 +67,11 @@ class acp_controller
 	 *
 	 * @param user					$user				User object
 	 * @param request				$request			Request object
-	 * @param auth					$auth				Auth object
 	 * @param log					$log				Log object
 	 * @param template				$template			Template object
 	 * @param language				$language			Language object
 	 * @param functions   			$functions			Functions for the extension
+	 * @param ext_functions   		$ext_functions		Functions for the extension
 	 * @param driver_interface		$db					The db connection
 	 * @param string				$root_path			phpBB root path
 	 * @param string				$php_ext			php ext
@@ -81,15 +81,15 @@ class acp_controller
 	 * @return \david63\forumsubs\controller\acp_controller
 	 * @access public
 	 */
-	public function __construct(user $user, request $request, auth $auth, log $log, template $template, language $language, functions $functions, driver_interface $db, string $root_path, string $php_ext, array $tables, string $ext_images_path)
+	public function __construct(user $user, request $request, log $log, template $template, language $language, functions $functions, ext_functions $ext_functions, driver_interface $db, string $root_path, string $php_ext, array $tables, string $ext_images_path)
 	{
 		$this->user				= $user;
 		$this->request			= $request;
-		$this->auth				= $auth;
 		$this->log				= $log;
 		$this->template			= $template;
 		$this->language			= $language;
 		$this->functions		= $functions;
+		$this->ext_functions	= $ext_functions;
 		$this->db				= $db;
 		$this->root_path		= $root_path;
 		$this->phpEx            = $php_ext;
@@ -155,7 +155,7 @@ class acp_controller
 		 * Because of the way the system is written, we need to change to the actual user in order to retrieve
 		 * the correct types and methods for the user being viewed - this is nothing more than a HACK
 		 */
-		$user_data	= $this->change_user($user_id);
+		$user_data	= $this->ext_functions->change_user($user_id);
 		$forums 	= make_forum_select(false, false, false, false, true, false, true);
 
 		foreach ($forums as $forum_id => $forum_data)
@@ -166,13 +166,13 @@ class acp_controller
 				// Need to handle forums without a category
 				'FORUM_TYPE'		=> ($forum_data['forum_type'] == 1 & $forum_data['parent_id'] == 0) ? 9 : $forum_data['forum_type'],
 				'FORUM_PADDING'		=> $forum_data['padding'],
-				'FORUM_SUBSCRIBED'	=> $this->functions->is_user_subscribed($forum_id, $user_id),
-				'SUBSCRIBED_COUNT'	=> $this->functions->get_subscribed_user_count($forum_id),
+				'FORUM_SUBSCRIBED'	=> $this->ext_functions->is_user_subscribed($forum_id, $user_id),
+				'SUBSCRIBED_COUNT'	=> $this->ext_functions->get_subscribed_user_count($forum_id),
 			]);
 		}
 
 		// We are in the ACP, have to have the auths for ACP stuff
-		$user_data = $this->change_user($user_id, 'restore', $user_data);
+		$user_data = $this->ext_functions->change_user($user_id, 'restore', $user_data);
 
 		$version_data	= $this->functions->version_check();
 		$valid 			= $this->functions->ext_requirements();
@@ -190,55 +190,5 @@ class acp_controller
 
 			'VERSION_NUMBER' 	=> $this->functions->get_meta('version'),
 		]);
-	}
-
-	/**
-	 * Swap the Admin user for the actual user - by RMcGirr83
-	 *
-	 * @param $user_id   	The user id whose notification types we are looking at
-	 * @param $mode      	The mode either replace or restore
-	 * @param $bkup_data	An array of the current user's data
-	 *
-	 * Changes the user in the ACP to that of the user chosen in the ACP
-	 *
-	 */
-	public function change_user($user_id, $mode = 'replace', $bkup_data = false)
-	{
-		switch ($mode)
-		{
-			// Change our user to the one being viewed
-			case 'replace':
-				$bkup_data = ['user_backup' => $this->user->data];
-
-				// Sql to get the user's info
-				$sql = 'SELECT *
-                    FROM ' . $this->tables['users'] . '
-                    WHERE user_id = ' . (int) $user_id;
-
-				$result = $this->db->sql_query($sql);
-				$row    = $this->db->sql_fetchrow($result);
-
-				$this->db->sql_freeresult($result);
-
-				$this->user->data = array_merge($this->user->data, $row);
-
-				// Reset the user's auths
-				$this->auth->acl($this->user->data);
-
-				unset($row);
-
-				return $bkup_data;
-			break;
-
-			// Now we restore the user's stuff
-			case 'restore':
-				$this->user->data = $bkup_data['user_backup'];
-
-				// Set the auths back to normal
-				$this->auth->acl($this->user->data);
-
-				unset($bkup_data);
-			break;
-		}
 	}
 }

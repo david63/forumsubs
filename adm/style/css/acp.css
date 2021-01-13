@@ -179,16 +179,16 @@ Style the collapsible content. Note: hidden by default
 /* ---------
 Additional table formatting
 --------- */
-th.forum-head {
+th.forum-head, .forum-head {
 	text-align: center;
 }
 
-tr.forum-cat {
+tr.forum-cat, .forum-cat {
     display: table-row;
 	cursor:pointer;
 	font-weight: bold;
 }
 
-tr.forum-forum {
+tr.forum-forum, .forum-forum {
     display: none;
 }

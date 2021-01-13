@@ -12,7 +12,7 @@
 							<dt class="fs-header">{{ lang('FORUM_NAME') }}</dt>
 							<dd class="fs-header">{{ lang('FORUM_POSTS') }}</dd>
 							{% for subs in loops.member_subs_1 %}
-								<dt class="fs-body">{{ subs.FORUM_NAME }} ( {{ subs.SUBSCRIBERS}} )</dt>
+								<dt class="fs-body">{{ subs.FORUM_NAME }}</dt>
 								<dd class="fs-body">{{ subs.FORUM_POSTS }}</dd>
 							{% endfor %}
 						</dl>
@@ -25,7 +25,7 @@
 								<dd class="fs-header">{{ lang('FORUM_POSTS') }}</dd>
 								<br><br>
 								{% for subs in loops.member_subs_2 %}
-									<dt class="fs-body">{{ subs.FORUM_NAME }} ( {{ subs.SUBSCRIBERS}} )</dt>
+									<dt class="fs-body">{{ subs.FORUM_NAME }}</dt>
 									<dd class="fs-body">{{ subs.FORUM_POSTS }}</dd>
 								{% endfor %}
 							</dl>

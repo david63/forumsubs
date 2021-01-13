@@ -11,7 +11,6 @@ namespace david63\forumsubs\core;
 
 use phpbb\extension\manager;
 use phpbb\exception\version_check_exception;
-use phpbb\db\driver\driver_interface;
 
 /**
  * functions
@@ -21,26 +20,16 @@ class functions
 	/** @var manager */
 	protected $phpbb_extension_manager;
 
-	/** @var driver_interface */
-	protected $db;
-
-	/** @var string phpBB tables */
-	protected $tables;
-
 	/**
 	 * Constructor for functions
 	 *
-	 * @param manager   			$phpbb_extension_manager    Extension manager
-	 * @param driver_interface		$db							The db connection
-	 * @param array					$tables						phpBB db tables
+	 * @param manager	$phpbb_extension_manager    Extension manager
 	 *
 	 * @access public
 	 */
-	public function __construct(manager $phpbb_extension_manager, driver_interface $db, array $tables)
+	public function __construct(manager $phpbb_extension_manager)
 	{
 		$this->ext_manager	= $phpbb_extension_manager;
-		$this->db			= $db;
-		$this->tables		= $tables;
 
 		$this->namespace = __NAMESPACE__;
 	}
@@ -172,67 +161,5 @@ class functions
 		}
 
 		return [$php_valid, $phpbb_valid];
-	}
-
-	/**
-	* Get count of user's posts for a forum
-	*
-	* @return $post_count
-	* @access public
-	*/
-	public function get_user_post_count($forum_id, $user_id)
-	{
-		$sql = 'SELECT COUNT(forum_id) AS post_count
-			FROM ' . $this->tables['posts'] . "
-				WHERE forum_id	= $forum_id
-				AND poster_id 	= $user_id";
-
-		$result		= $this->db->sql_query($sql);
-		$post_count	= (int) $this->db->sql_fetchfield('post_count');
-
-		$this->db->sql_freeresult($result);
-
-		return $post_count;
-	}
-
-	/**
-	* Is user subscribed to a forum
-	*
-	* @return $post_count
-	* @access public
-	*/
-	public function is_user_subscribed($forum_id, $user_id)
-	{
-		$sql = 'SELECT *
-			FROM ' . $this->tables['forums_watch'] . "
-				WHERE forum_id	= $forum_id
-				AND user_id 	= $user_id";
-
-		$result		= $this->db->sql_query($sql);
-		$subscribed = ($result->num_rows != 0) ? true : false;
-
-		$this->db->sql_freeresult($result);
-
-		return $subscribed;
-	}
-
-	/**
-	* Get the number of users subscribed to a forum
-	*
-	* @return $user_count
-	* @access public
-	*/
-	public function get_subscribed_user_count($forum_id)
-	{
-		$sql = 'SELECT COUNT(user_id) AS user_count
-			FROM ' . $this->tables['forums_watch'] . "
-				WHERE forum_id	= $forum_id";
-
-		$result		= $this->db->sql_query($sql);
-		$user_count	= (int) $this->db->sql_fetchfield('user_count');
-
-		$this->db->sql_freeresult($result);
-
-		return $user_count;
 	}
 }

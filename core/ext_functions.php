@@ -32,7 +32,7 @@ class ext_functions
 	/** @var language */
 	protected $language;
 
-	/** @var string phpBB tables */
+	/** @var array phpBB tables */
 	protected $tables;
 
 	/** @var functions */

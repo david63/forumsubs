@@ -21,6 +21,8 @@ use david63\forumsubs\core\functions;
 use david63\forumsubs\core\ext_functions;
 use phpbb\db\driver\driver_interface;
 
+const FORUM_SPECIAL = 9;
+
 /**
  * Event listener
  */
@@ -56,7 +58,7 @@ class acp_controller
 	/** @var string PHP extension */
 	protected $phpEx;
 
-	/** @var string phpBB tables */
+	/** @var array phpBB tables */
 	protected $tables;
 
 	/** @var string */
@@ -164,7 +166,7 @@ class acp_controller
 				'FORUM_ID'			=> $forum_id,
 				'FORUM_NAME'		=> $forum_data['forum_name'],
 				// Need to handle forums without a category
-				'FORUM_TYPE'		=> ($forum_data['forum_type'] == 1 & $forum_data['parent_id'] == 0) ? 9 : $forum_data['forum_type'],
+				'FORUM_TYPE'		=> ($forum_data['forum_type'] == FORUM_POST & $forum_data['parent_id'] == 0) ? FORUM_SPECIAL : $forum_data['forum_type'],
 				'FORUM_PADDING'		=> $forum_data['padding'],
 				'FORUM_SUBSCRIBED'	=> $this->ext_functions->is_user_subscribed($forum_id, $user_id),
 				'SUBSCRIBED_COUNT'	=> $this->ext_functions->get_subscribed_user_count($forum_id),

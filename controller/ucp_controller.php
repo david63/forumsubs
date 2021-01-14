@@ -42,7 +42,7 @@ class ucp_controller
 	/** @var driver_interface */
 	protected $db;
 
-	/** @var string phpBB tables */
+	/** @var array phpBB tables */
 	protected $tables;
 
 	/**

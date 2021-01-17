@@ -111,6 +111,8 @@ jobs:
                       db: "mysql:5.6"
                     - php: '7.1'
                       db: "mysql:5.7"
+                      COVERAGE: 1
+                      db_alias: "mysql:5.7 with Coverage"
                     - php: '7.2'
                       db: "mysql:5.7"
                       COVERAGE: 1
@@ -178,6 +180,14 @@ jobs:
                   php-version: ${{ matrix.php }}
                   extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, mysqli, sqlite, pdo_sqlite, intl, gd, exif, iconv, sqlsrv, pdo_sqlsrv, ldap
                   coverage: none
+
+            - name: Setup PHP with Coverage
+              if: ${{ matrix.COVERAGE == 1 }}
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: ${{ matrix.php }}
+                  extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, mysqli, sqlite, pdo_sqlite, intl, gd, exif, iconv, sqlsrv, pdo_sqlsrv, ldap
+                  coverage: xdebug
 
             - name: Setup PHP with Coverage
               if: ${{ matrix.COVERAGE == 1 }}

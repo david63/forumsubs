@@ -14,8 +14,8 @@
 					<div class="{% if fora.S_ROW_COUNT is even %}table-row1{% else %}table-row2{% endif %}{% if fora.FORUM_TYPE == 0 or fora.FORUM_TYPE == 9 %} forum-cat{% else %} forum-forum{% endif %}">
 					<div class="table-body-cell">{{ fora.FORUM_PADDING }}{{ fora.FORUM_NAME }}</div>
 						{% if fora.FORUM_TYPE == 1 or fora.FORUM_TYPE == 9 %}
-							<div class="table-body-cell-narrow">{{ fora.SUBSCRIBED_COUNT }}</div>
-							<div class="table-body-cell">{{ fora.SUBSCRIBERS }}</div>
+							<div class="table-body-cell-tiny">{{ fora.SUBSCRIBED_COUNT }}</div>
+							<div class="table-body-cell-wide">{{ fora.SUBSCRIBERS }}</div>
 						{% else %}
 							<div class="table-body-cell"></div>
 							<div class="table-body-cell"></div>

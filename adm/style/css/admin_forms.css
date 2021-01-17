@@ -65,7 +65,7 @@ select, #sk, #sd, #fc, #fb {
 	font-size: 12px;
 	font-weight: bold;
 	margin: 0.25em;
-	overflow: hidden;
+	overflow: scroll;
 	padding: 0.25em 10px;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -559,7 +559,7 @@ Tables
 	width: 700px;
 }
 
-.table-body-cell, .table-body-cell-bold, .table-body-cell-select, .table-body-cell-span, .table-body-cell-narrow, .table-body-cell-wide, .table-body-cell-centre, .table-body-cell-right {
+.table-body-cell, .table-body-cell-bold, .table-body-cell-select, .table-body-cell-span, .table-body-cell-narrow, .table-body-cell-wide, .table-body-cell-centre, .table-body-cell-right, .table-body-cell-tiny {
 	display: table-cell;
 	text-align: left;
 	vertical-align: middle;

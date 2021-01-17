@@ -23,6 +23,15 @@ use david63\forumsubs\controller\ucp_controller;
  */
 class listener implements EventSubscriberInterface
 {
+	/** @var main_controller */
+	protected $main_controller;
+
+	/** @var acp_controller */
+	protected $acp_controller;
+
+	/** @var admin_controller */
+	protected $admin_controller;
+
 	/**
 	 * Constructor for listener
 	 *
@@ -49,10 +58,10 @@ class listener implements EventSubscriberInterface
 	static public function getSubscribedEvents()
 	{
 		return array(
-			'core.permissions' 					=> 'add_permissions',
-			'core.viewforum_modify_topics_data' => 'forum_subscriptions',
-			'core.acp_users_mode_add' 			=> 'fsub_acp_users',
-			'core.memberlist_view_profile'		=> 'ucp_profile_view',
+			'core.permissions' 						=> 'add_permissions',
+			'core.viewforum_modify_topics_data' 	=> 'forum_subscriptions',
+			'core.acp_users_mode_add' 				=> 'fsub_acp_users',
+			'core.memberlist_view_profile'			=> 'ucp_profile_view',
 		);
 	}
 
@@ -107,4 +116,5 @@ class listener implements EventSubscriberInterface
 	{
 		$this->ucp_controller->ucp_forumsubs($event['member']['user_id']);
 	}
+
 }

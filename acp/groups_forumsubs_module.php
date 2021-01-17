@@ -9,7 +9,7 @@
 
 namespace david63\forumsubs\acp;
 
-class forumsubs_module
+class groups_forumsubs_module
 {
 	public $u_action;
 
@@ -17,12 +17,12 @@ class forumsubs_module
 	{
 		global $phpbb_container;
 
-		$this->tpl_name   = 'forum_subscriptions';
+		$this->tpl_name   = 'groups_forum_subscriptions';
 		$this->page_title = $phpbb_container->get('language')->lang('FORUM_SUBSCRIPTIONS');
 
-		// Get an instance of the admin controller
-		$admin_controller = $phpbb_container->get('david63.forumsubs.admin.controller');
+		// Get an instance of the groups controller
+		$admin_controller = $phpbb_container->get('david63.forumsubs.groups.controller');
 
-		$admin_controller->display_output();
+		$admin_controller->forum_subscriptions();
 	}
 }

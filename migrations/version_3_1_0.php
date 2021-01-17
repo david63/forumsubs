@@ -20,19 +20,27 @@ class version_3_1_0 extends migration
 	public function update_data()
 	{
 		$update_data = [];
+
 		// Add new permissions
 		$update_data[] = ['permission.add', ['u_forumsubs_view', true]];
 
-		// Add new module
+		// Add new modules
 		$update_data[] = ['module.add', [
 			'acp',
 			'ACP_CAT_USERS',
 			[
-				'module_basename'	=> 'acp_users',
+				'module_basename' 	=> 'acp_users',
 				'module_langname'	=> 'USER_SUBSCRIPTIONS',
-				'module_mode'		=> 'forumsubs',
-				'module_display'	=> false,
-				'module_auth'		=> 'ext_david63/forumsubs && acl_a_user',
+				'module_mode' 		=> 'forumsubs',
+				'module_display' 	=> false,
+				'module_auth' 		=> 'ext_david63/forumsubs && acl_a_user',
+			],
+		]];
+
+		$update_data[] = ['module.add', [
+			'acp', 'ACP_GROUPS', [
+				'module_basename' 	=> '\david63\forumsubs\acp\groups_forumsubs_module',
+				'modes' => ['main'],
 			],
 		]];
 
@@ -43,12 +51,32 @@ class version_3_1_0 extends migration
 
 		$update_data[] = ['module.add', [
 			'acp', 'ACP_USER_UTILS', [
-				'module_basename' => '\david63\forumsubs\acp\forumsubs_module',
+				'module_basename' => '\david63\forumsubs\acp\acp_forumsubs_module',
 				'modes' => ['main'],
 			],
 		]];
 
 		return $update_data;
+	}
+
+	/**
+	 * @return array Array update data
+	 * @access public
+	 */
+	public function update_schema()
+	{
+		// Add new column to Groups table
+		return[
+			'add_columns' => [
+				$this->table_prefix . 'groups' => [
+					'forumsubs_forums' => ['TEXT', ''],
+				],
+
+				$this->table_prefix . 'forums_watch' => [
+					'group_subs' => ['UINT', 0],
+				],
+			],
+		];
 	}
 
 	protected function module_check()
@@ -65,5 +93,26 @@ class version_3_1_0 extends migration
 
 		// return true if module is empty, false if has children
 		return (bool) !$module_id;
+	}
+
+	/**
+	 * Drop the schemas from the database
+	 *
+	 * @return array Array of table schema
+	 * @access public
+	 */
+	public function revert_schema()
+	{
+		return [
+			'drop_columns' => [
+				$this->table_prefix . 'groups' => [
+					'forumsubs_forums',
+				],
+
+				$this->table_prefix . 'forums_watch' => [
+					'group_subs',
+				],
+			],
+		];
 	}
 }

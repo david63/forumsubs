@@ -39,12 +39,16 @@ if (empty($lang) || !is_array($lang))
  */
 
 $lang = array_merge($lang, [
-	'ACP_USER_FORUMSUBS'		=> 'Subscriptions',
+	'FORUM_GROUP_SELECT'			=> 'Select the group',
+	'FORUM_GROUP_SELECT_EXPLAIN'	=> 'This is the group to which the subscriptions will apply.',
 
-	'FORUM_SUBSCRIPTIONS'		=> 'Forum subscriptions',
+	'GROUP_FORUM_SUBSCRIPTIONS'		=> 'Group forum subscriptions',
+	'GROUP_SUBSCRIPTIONS_EXPLAIN'	=> 'Here you can select the group for which you want to subscribe users and then select the fora that they will be subscribed to.',
 
-	'LOG_ACP_USER_FORUM_SUBS'	=> '<strong>Updated forum subscriptions<br></strong>» %1$s',
-	'LOG_FORUMSUBS_GROUPS'		=> '<strong>Updated forum group subscriptions<br></strong>» %s',
+	'NO_GROUP_SELECTED'				=> 'No group has been selected - please try again.',
 
-	'USER_SUBSCRIPTIONS' 		=> 'User subscriptions',
+	'SELECT_FORUMS'					=> 'Select the forum(s)',
+	'SELECT_FORUMS_EXPLAIN'			=> 'Select the forum(s) that this group is to be subscribed to.<br><br>Hold the “ctrl” key to select multiple fora or to unselect a forum.',
+	'SELECT_GROUP'					=> 'Select a group',
+	'SELECTED_GROUP'				=> 'Selecting the forum(s) for <strong>%s</strong> group',
 ]);

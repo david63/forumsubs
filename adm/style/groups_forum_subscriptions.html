@@ -1,0 +1,37 @@
+{% include '@' ~ NAMESPACE ~ '/head_panel.html' %}
+
+{% if PHP_VALID and PHPBB_VALID %}
+	{% INCLUDECSS '@' ~ NAMESPACE ~ '/css/acp.css' %}
+
+	<form id="groups_forumsubs" method="post" action="{{ U_ACTION }}">
+		<fieldset>
+			{% if FORM_SELECT %}
+				<dl>
+	    			<dt><label for="forumsubs_group">{{ lang('FORUM_GROUP_SELECT') }}{{ lang('COLON') }}</label><br><span>{{ lang('FORUM_GROUP_SELECT_EXPLAIN') }}</span></dt>
+	    			<dd><select id="forumsubs_group" name="forumsubs_group"><option value="0">{{ lang('SELECT_GROUP') }}</option>{{ S_GROUP_SELECT }}</select></dd>
+				</dl>
+
+				<p class="submit-buttons">
+					<input class="adm-button" type="submit" id="select" name="select" value="{{ lang('SELECT') }}" />
+				</p>
+			{% elseif FORM_UPDATE %}
+				<div class="head-description">{{ GROUP_NAME }}</div>
+				<dl>
+					<dt><label for="group_subs_select">{{ lang('SELECT_FORUMS') }}{{ lang('COLON') }}</label><br /><span>{{ lang('SELECT_FORUMS_EXPLAIN') }}</span></dt>
+					<dd>
+						<select class="select" id="multi" name="forumsubs_forums[]" multiple="multiple" size="20">{{ GROUP_FORUM_SELECT }}</select>
+					</dd>
+				</dl>
+
+				<p class="submit-buttons">
+					<input class="adm-button" type="submit" id="update" name="update" value="{{ lang('UPDATE') }}" />
+				</p>
+			{% endif %}
+
+			{{ S_FORM_TOKEN }}
+			{{ S_HIDDEN_FIELDS }}
+		</fieldset>
+	</form>
+
+	{% include '@' ~ NAMESPACE ~ '/donate.html' %}
+{% endif %}

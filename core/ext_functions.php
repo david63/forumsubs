@@ -204,7 +204,7 @@ class ext_functions
 
 		if ($result->num_rows == 0)
 		{
- 			return $this->language->lang('NO_SUBSCRIBERS');
+			return $this->language->lang('NO_SUBSCRIBERS');
 		}
 
 		$users = '';
@@ -321,7 +321,7 @@ class ext_functions
 		// First we will remove any unsubscribed fora
 		if (!empty($less_fora))
 		{
-			foreach($less_fora as $forum_id)
+			foreach ($less_fora as $forum_id)
 			{
 				$sql = 'DELETE FROM ' .
 					$this->tables['forums_watch'] .
@@ -336,7 +336,7 @@ class ext_functions
 		// Next we add the new fora subscriptions
 		if (!empty($added_fora))
 		{
-			foreach($added_fora as $forum_id)
+			foreach ($added_fora as $forum_id)
 			{
 				foreach ($user_ary as $user_id)
 				{

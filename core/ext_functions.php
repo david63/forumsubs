@@ -184,13 +184,13 @@ class ext_functions
 	 * @return $users
 	 * @access public
 	 */
-	public function get_subscribed_users($forum_id)
+	public function get_subscribed_users($forum_id, $full = true)
 	{
 		// Add the language files
 		$this->language->add_lang('acp_forumsubs', $this->functions->get_ext_namespace());
 
 		$sql = $this->db->sql_build_query('SELECT', [
-			'SELECT'	=> 'u.user_id, u.username, u.user_colour, fw.forum_id',
+			'SELECT'	=> 'u.user_id, u.username, u.username_clean, u.user_colour, fw.forum_id',
 			'FROM'		=> [
 				$this->tables['users']			=> 'u',
 				$this->tables['forums_watch']	=> 'fw',
@@ -202,7 +202,7 @@ class ext_functions
 
 		$result = $this->db->sql_query($sql);
 
-		if ($result->num_rows == 0)
+		if ($result->num_rows == 0 && $full)
 		{
 			return $this->language->lang('NO_SUBSCRIBERS');
 		}
@@ -211,7 +211,8 @@ class ext_functions
 
 		while ($row = $this->db->sql_fetchrow($result))
 		{
-			$users .= get_username_string('full', $row['user_id'], $row['username'], $row['user_colour']) . $this->language->lang('COMMA_SEPARATOR');
+			$users .= ($full) ? get_username_string('full', $row['user_id'], $row['username'], $row['user_colour']) : "'" . $row['username_clean'] . "'";
+			$users .= $this->language->lang('COMMA_SEPARATOR');
 		}
 
 		$this->db->sql_freeresult($result);

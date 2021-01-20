@@ -1,0 +1,46 @@
+{% include 'simple_header.html' %}
+
+<form method="post" id="results" action="{{ S_MODE_ACTION }}" onsubmit="insert_marked_users('#results', this.forum); return false;" data-form-name="acp_email" data-field-name="usernames">
+
+<h2 class="solo">{{ PAGE_TITLE }}</h2>
+
+<div class="panel">
+	<div class="inner">
+		<p>{{ lang('FIND_FORUM_EXPLAIN') }}</p>
+	</div>
+</div>
+
+<div class="forumbg">
+	<div class="inner">
+		<table class="table1" id="forumrlist">
+			<thead>
+				<tr>
+					<th class="name">{{ lang('FORUM') }}</th>
+					<th class="posts">{{ lang('SUBSCRIBERS') }}</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				{% for forum in forumrow %}
+					<tr class="{% if forum.S_ROW_COUNT is even %}bg1{% else %}bg2{% endif %}">
+						<td><input type="checkbox" name="forum" value="fid{{ forum.FORUM_ID }}">&nbsp;{{ forum.FORUM_NAME }}<br>[&nbsp;<a href="#" onclick="insert_single_user('#results', 'fid{{ forum.FORUM_ID }}'); return false;">{{ lang('SELECT') }}</a>&nbsp;]
+						</td>
+							<td class="posts">{{ forum.USER_COUNT }}
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<fieldset class="display-actions">
+	<input type="submit" name="submit" value="{{ lang('SELECT_MARKED') }}" class="button2">
+	<div>
+		<a href="#" onclick="marklist('results', 'forum', true); return false;">{{ lang('MARK_ALL') }}</a>&nbsp;&bull;&nbsp;<a href="#" onclick="marklist('results', 'forum', false); return false;">{{ lang('UNMARK_ALL') }}</a>
+	</div>
+</fieldset>
+
+</form>
+
+{% include 'simple_footer.html' %}

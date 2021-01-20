@@ -2,7 +2,7 @@
 	"name": "david63/forumsubs",
 	"type": "phpbb-extension",
 	"description": "Manage member's forum subscriptions.",
-	"version": "3.1.0-RC3",
+	"version": "3.1.0-RC4",
 	"time": "2021-01-05",
 	"keywords":
 	[

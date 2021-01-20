@@ -23,9 +23,6 @@ use phpbb\db\driver\driver_interface;
 
 const FORUM_SPECIAL = 9;
 
-/**
- * Event listener
- */
 class acp_controller
 {
 	/** @var user */

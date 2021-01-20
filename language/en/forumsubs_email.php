@@ -39,11 +39,7 @@ if (empty($lang) || !is_array($lang))
  */
 
 $lang = array_merge($lang, [
-	'DISPLAY_SUBSCRIPTIONS' => 'Display forum subscriptions',
+	'FIND_FORUM'			=> 'Find a forum',
 
-	'FORUM_SELECT'			=> 'Select a forum',
-
-	'SUBSCRIBERS'			=> 'Subscribers : %s',
-
-	'USERNAME'				=> 'Username',
+	'SEND_TO_USERS_EXPLAIN'	=> 'Entering names, or forum ids, here will override any group selected above. Enter each username, or forum id, on a new line.<br>If multiple fora are selected duplicate usernames will be removed prior to emails being sent.',
 ]);

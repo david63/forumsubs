@@ -1,0 +1,3 @@
+david63_forumsubs_forumpopup:
+    path: /forumsubs
+    defaults: { _controller: david63.forumsubs.email.controller:forumpopup }

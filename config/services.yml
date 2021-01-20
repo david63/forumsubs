@@ -31,6 +31,9 @@ services:
     david63.forumsubs.groups.controller:
         class: david63\forumsubs\controller\groups_controller
 
+    david63.forumsubs.email.controller:
+        class: david63\forumsubs\controller\email_controller
+
     david63.forumsubs.core.functions:
         class: david63\forumsubs\core\functions
 

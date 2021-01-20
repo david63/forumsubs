@@ -69,7 +69,7 @@ class version_3_1_0 extends migration
 		return[
 			'add_columns' => [
 				$this->table_prefix . 'groups' => [
-					'forumsubs_forums' => ['TEXT', ''],
+					'forumsubs_forums' => ['TEXT', null],
 				],
 
 				$this->table_prefix . 'forums_watch' => [

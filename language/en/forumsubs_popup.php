@@ -39,11 +39,15 @@ if (empty($lang) || !is_array($lang))
  */
 
 $lang = array_merge($lang, [
-	'DISPLAY_SUBSCRIPTIONS' => 'Display forum subscriptions',
-
+	'FIND_FORUM_EXPLAIN'	=> 'Use this form to select one or more fora. Use the mark checkboxes to select one or more fora (several fora may be accepted depending on the form itself) and click the “Select marked” button to return to the previous form.',
+	'FORUM'					=> 'Forum',
 	'FORUM_SELECT'			=> 'Select a forum',
 
-	'SUBSCRIBERS'			=> 'Subscribers : %s',
+	'MARK_ALL'				=> 'Mark all',
 
-	'USERNAME'				=> 'Username',
+	'SELECT'				=> 'Select',
+	'SELECT_MARKED'			=> 'Select marked',
+	'SUBSCRIBERS'			=> 'Subscribers',
+
+	'UNMARK_ALL'			=> 'Unmark all',
 ]);

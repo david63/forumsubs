@@ -185,7 +185,7 @@ class listener implements EventSubscriberInterface
 			{
 				$first_char 	= $lastpos;
 				$last_char 		= strpos($where, "'", $lastpos) - 3;
-    			$forum_id_ary[]	= substr($where, $first_char + 3, $last_char - $first_char);
+				$forum_id_ary[]	= substr($where, $first_char + 3, $last_char - $first_char);
 				$lastpos 		= $lastpos + 3;
 			}
 

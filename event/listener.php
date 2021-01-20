@@ -156,7 +156,6 @@ class listener implements EventSubscriberInterface
 		// Add the language files
 		$this->language->add_lang('forumsubs_email', $this->functions->get_ext_namespace());
 
-
 		$template_data 					= $event['template_data'];
 		$template_data['U_FIND_FORUM']	= $this->helper->route('david63_forumsubs_forumpopup');
 		$event['template_data'] 		= $template_data;
@@ -187,7 +186,7 @@ class listener implements EventSubscriberInterface
 				$first_char 	= $lastpos;
 				$last_char 		= strpos($where, "'", $lastpos) - 3;
     			$forum_id_ary[]	= substr($where, $first_char + 3, $last_char - $first_char);
-    			$lastpos 		= $lastpos + 3;
+				$lastpos 		= $lastpos + 3;
 			}
 
 			$subscribed_users = '';

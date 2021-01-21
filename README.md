@@ -8,7 +8,7 @@ Manage member's forum subscriptions.
 [![Latest Unstable Version](https://poser.pugx.org/david63/forumsubs/v/unstable)](https://packagist.org/packages/david63/forumsubs)
 [![Total Downloads](https://poser.pugx.org/david63/forumsubs/downloads)](https://packagist.org/packages/david63/forumsubs)
 [![codecov](https://codecov.io/gh/david63/forumsubs/branch/master/graph/badge.svg?token=D2500PgRex)](https://codecov.io/gh/david63/forumsubs)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/59902be2665c476dbd7951858c9ff769)](https://www.codacy.com/manual/david63/forumsubs?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=david63/forumsubs&amp;utm_campaign=Badge_Grade)
+[![CodeFactor](https://www.codefactor.io/repository/github/david63/forumsubs/badge)](https://www.codefactor.io/repository/github/david63/forumsubs)
 
 [![Compatible](https://img.shields.io/badge/compatible-phpBB:3.3.x-blue.svg)](https://shields.io/)
 

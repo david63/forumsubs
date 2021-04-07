@@ -189,7 +189,6 @@ tr.forum-cat, .forum-cat {
 	font-weight: bold;
 }
 
-/* Delete this block to open with all fora expanded */
 tr.forum-forum, .forum-forum {
     display: none;
 }

@@ -1,2 +1,5 @@
 fixes:
     - "/phpBB3/phpBB/ext/david63/forumsubs/::"
+
+codecov:
+    token: a64b1325-8120-4a2e-a71b-631b7478e2b1
